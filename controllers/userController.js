@@ -1,7 +1,30 @@
 const emojiAlphabet = [
-  "😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊",
-  "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "🙂", "🤗",
-  "🤩", "🤔", "🤨", "😐", "😑", "😶"
+  "😀",
+  "😁",
+  "😂",
+  "🤣",
+  "😃",
+  "😄",
+  "😅",
+  "😆",
+  "😉",
+  "😊",
+  "😋",
+  "😎",
+  "😍",
+  "😘",
+  "🥰",
+  "😗",
+  "😙",
+  "😚",
+  "🙂",
+  "🤗",
+  "🤩",
+  "🤔",
+  "🤨",
+  "😐",
+  "😑",
+  "😶",
 ];
 
 function caesarCipherEncrypt(text, shift) {
@@ -36,12 +59,12 @@ function caesarCipherDecrypt(text, shift) {
   return decryptedText;
 }
 
-const chk = async (res) => {
+const chk = async (req, res) => {
   try {
     res.json({ success: true, message: "Backend working successfully" });
   } catch (error) {
-    console.error("Error fetching application data:", error);
-    res.json({ success: false, message: "Error fetching application data" });
+    console.error("Error checking application status:", error);
+    res.json({ success: false, message: "Error checking application status" });
   }
 };
 
@@ -49,12 +72,11 @@ const encrypt = async (req, res) => {
   try {
     const { text } = req.body;
     const shift = 3;
-    let result;
-    result = caesarCipherEncrypt(text, shift);
+    const result = caesarCipherEncrypt(text, shift);
     res.send(result);
   } catch (error) {
-    console.error("Error fetching application data:", error);
-    res.json({ success: false, message: "Error fetching application data" });
+    console.error("Error processing encryption:", error);
+    res.json({ success: false, message: "Error processing encryption" });
   }
 };
 
@@ -62,12 +84,11 @@ const decrypt = async (req, res) => {
   try {
     const { text } = req.body;
     const shift = 3;
-    let result;
-    result = caesarCipherDecrypt(text, shift);
+    const result = caesarCipherDecrypt(text, shift);
     res.send(result);
   } catch (error) {
-    console.error("Error fetching application data:", error);
-    res.json({ success: false, message: "Error fetching application data" });
+    console.error("Error processing decryption:", error);
+    res.json({ success: false, message: "Error processing decryption" });
   }
 };
 

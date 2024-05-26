@@ -1,31 +1,7 @@
-const symbolAlphabet = [
-  "!",
-  "@",
-  "#",
-  "$",
-  "%",
-  "^",
-  "&",
-  "*",
-  "(",
-  ")",
-  "-",
-  "_",
-  "=",
-  "+",
-  "{",
-  "}",
-  "[",
-  "]",
-  ":",
-  ";",
-  "'",
-  "<",
-  ">",
-  "?",
-  "/",
-  "|",
-  "~",
+const emojiAlphabet = [
+  "😀", "😁", "😂", "🤣", "😃", "😄", "😅", "😆", "😉", "😊",
+  "😋", "😎", "😍", "😘", "🥰", "😗", "😙", "😚", "🙂", "🤗",
+  "🤩", "🤔", "🤨", "😐", "😑", "😶"
 ];
 
 function caesarCipherEncrypt(text, shift) {
@@ -34,7 +10,7 @@ function caesarCipherEncrypt(text, shift) {
     if (/[a-zA-Z]/.test(char)) {
       const shiftAmount = shift % 26;
       const index = char.toLowerCase().charCodeAt(0) - 97;
-      const encryptedChar = symbolAlphabet[(index + shiftAmount) % 26];
+      const encryptedChar = emojiAlphabet[(index + shiftAmount) % 26];
       encryptedText += encryptedChar;
     } else {
       encryptedText += char;
@@ -46,9 +22,9 @@ function caesarCipherEncrypt(text, shift) {
 function caesarCipherDecrypt(text, shift) {
   let decryptedText = "";
   for (const char of text) {
-    if (symbolAlphabet.includes(char)) {
+    if (emojiAlphabet.includes(char)) {
       const shiftAmount = shift % 26;
-      const index = symbolAlphabet.indexOf(char);
+      const index = emojiAlphabet.indexOf(char);
       const decryptedChar = String.fromCharCode(
         97 + ((index - shiftAmount + 26) % 26)
       );

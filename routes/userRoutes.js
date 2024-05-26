@@ -1,11 +1,13 @@
+
 const express = require("express");
-const userRoute = express.Router();
-const { encrypt, decrypt, chk } = require("../controllers/userController");
+const router = express.Router();
+const { decrypt, encrypt, chk } = require("../controllers/userController");
 
-userRoute.route("/api").get(chk);
+const csrf = require("csurf");
+const csrfProtection = csrf({ cookie: true });
 
-userRoute.route("/api/encrypt").post(encrypt);
+router.get("/", chk);
+router.post("/encrypt", csrfProtection, encrypt);
+router.post("/decrypt", csrfProtection, decrypt);
 
-userRoute.route("/api/decrypt").post(decrypt);
-
-module.exports = userRoute;
+module.exports = router;

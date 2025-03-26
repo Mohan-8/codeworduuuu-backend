@@ -1,11 +1,14 @@
 const express = require("express");
-const userRoute = express.Router();
+const multer = require("multer");
+const router = express.Router();
 const { encrypt, decrypt, chk } = require("../controllers/userController");
 
-userRoute.route("/api").get(chk);
+// Multer configuration
+const storage = multer.memoryStorage(); // Store file in memory (change for file-based storage)
+const upload = multer({ storage: storage });
 
-userRoute.route("/api/encrypt").post(encrypt);
+router.get("/", chk);
+router.post("/encrypt", upload.single("image"), encrypt);
+router.post("/decrypt", upload.single("image"), decrypt);
 
-userRoute.route("/api/decrypt").post(decrypt);
-
-module.exports = userRoute;
+module.exports = router;

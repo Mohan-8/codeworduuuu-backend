@@ -11,11 +11,16 @@ const app = express();
 // Middleware
 app.use(express.json()); // Parses JSON body
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
-app.use(cors());
+
+// Enable CORS for your frontend domain
+app.use(
+  cors({
+    origin: "https://codeworduuuu-frontend.vercel.app", // Replace with the actual frontend URL
+  })
+);
 
 // Routes
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-
 app.use("/api", userRoutes);
 
 const PORT = process.env.PORT || 3001;

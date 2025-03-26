@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true })); // Parses URL-encoded data
 // Enable CORS for your frontend domain
 app.use(
   cors({
-    origin: "https://codeworduuuu-frontend.vercel.app", // Replace with the actual frontend URL
+    origin: "*",
   })
 );
 

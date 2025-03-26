@@ -273,7 +273,7 @@ async function hideMessageInImage(message, imageBuffer, outputPath) {
 
     await sharp(modifiedImageBuffer).toFile(outputPath);
     console.log("✅ Message hidden successfully in:", outputPath);
-    const imageUrl = `https://codeworduuu.vercel.app/uploads/${path.basename(
+    const imageUrl = `http://localhost:3001/uploads/${path.basename(
       outputPath
     )}`;
     return imageUrl;
